@@ -7,32 +7,40 @@
  */
 
 (function ($) {
+	var crud = {
+		endpoint: '/api',
+		create: function (table, data) {
+			return this._send( 'POST', table, data );
+		},
+		read: function (table, data) {
+			return this._send( 'GET', table, data );
+		},
+		update: function (table, data) {
+			return this._send( 'PUT', table, data );
+		},
+		destroy: function (table, data) {
+			return this._send( 'DELETE', table, data );
+		},
+		query: function (table, params) {
+			return this._send( 'GET', table, params );
+		},
+		_send: function (type, table, data) {
+			var url;
+			url = this.endpoint + "/" + table;
+			if (data != null ? data.id : void 0 && type !== 'GET') {
+				url += '/' + (data != null ? data.id : void 0);
+			}
+			return $.ajax( {
+				url: url,
+				type: type,
+				dataType: "json",
+				data: data
+			} );
+		}
+	};
 
-  // Collection method.
-  $.fn.awesome = function () {
-    return this.each(function (i) {
-      // Do something awesome to each selected element.
-      $(this).html('awesome' + i);
-    });
-  };
-
-  // Static method.
-  $.awesome = function (options) {
-    // Override default options with passed-in options.
-    options = $.extend({}, $.awesome.options, options);
-    // Return something awesome.
-    return 'awesome' + options.punctuation;
-  };
-
-  // Static method default options.
-  $.awesome.options = {
-    punctuation: '.'
-  };
-
-  // Custom selector.
-  $.expr[':'].awesome = function (elem) {
-    // Is this element awesome?
-    return $(elem).text().indexOf('awesome') !== -1;
-  };
-
-}(jQuery));
+	$.extend( $.fn, {
+		crud: crud
+	} );
+})
+( jQuery );
