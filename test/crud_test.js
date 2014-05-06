@@ -9,23 +9,15 @@
 	};
 
 	module( '$.fn.crud', {
-		// This will run before each test in this module.
 		setup: function () {
-
-			$.mockjax( {
-				url: '/api/posts',
-				type: 'POST',
-				responseText: { status: 'success', message: expected.create }
-			} );
-			$.mockjax( {
-				url: '/api/posts',
-				type: 'GET',
-				responseText: { status: 'success', message: expected.query }
-			} );
+			$.mockjax( { url: '/api/*', type: 'GET', responseText: { message: expected.query } } );
+			$.mockjax( { url: '/api/*', type: 'POST', responseText: { message: expected.create } } );
+			$.mockjax( { url: '/api/*/1', type: 'PUT', responseText: { message: expected.update } } );
+			$.mockjax( { url: '/api/*/1', type: 'DELETE', responseText: { message: expected.destroy } } );
 		}
 	} );
 
-	//Should make a POST request to the server sending the data
+	//Should make a POST request to the server sending the data.
 	asyncTest( 'create', function () {
 		expect( 1 );
 		$.fn.crud.create( 'posts', {name: 'test', body: 'This is a test.'} ).done( function (data) {
@@ -34,11 +26,29 @@
 		} );
 	} );
 
-	//Should make a GET request to the server
+	//Should make a GET request to the server.
 	asyncTest( 'query', function () {
 		expect( 1 );
 		$.fn.crud.query( 'posts' ).done( function (data) {
 			equal( data.message, expected.query, 'should return data' );
+			start();
+		} );
+	} );
+
+	//Should make PUT request to server.
+	asyncTest( 'update', function () {
+		expect( 1 );
+		$.fn.crud.update( 'posts', {id: 1, title: 'Updated title'} ).done( function (data) {
+			equal( data.message, expected.update, 'should return data' );
+			start();
+		} );
+	} );
+
+	//Should make DELETE request to server.
+	asyncTest( 'destroy', function () {
+		expect( 1 );
+		$.fn.crud.destroy( 'posts', {id: 1} ).done( function (data) {
+			equal( data.message, expected.destroy, 'should return data' );
 			start();
 		} );
 	} );
