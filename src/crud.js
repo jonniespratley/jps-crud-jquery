@@ -42,5 +42,4 @@
 	$.extend( $.fn, {
 		crud: crud
 	} );
-})
-( jQuery );
+})( jQuery );

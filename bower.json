@@ -2,6 +2,9 @@
   "name": "jps-crud",
   "version": "0.0.1",
   "dependencies": {},
+	"main":{
+		"dist/jquery.crud.min.js"
+	},
 	"ignore": [
 		"bower_components",
 		"src",
