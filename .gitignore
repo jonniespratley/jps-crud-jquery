@@ -1,2 +1,7 @@
 /node_modules/
+<<<<<<< HEAD
 .idea**
+=======
+/bower_components/
+.idea/**
+>>>>>>> 8d6a1d7f51b24f7949cd63d38cae1becfcab8620

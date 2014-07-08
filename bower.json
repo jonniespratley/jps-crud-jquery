@@ -1,0 +1,23 @@
+{
+  "name": "jps-crud",
+  "version": "0.0.2",
+  "dependencies": {},
+  "main": "dist/jquery.crud.min.js",
+  "ignore": [
+    "bower_components",
+    "src",
+    "test",
+    "node_modules",
+    ".gitignore",
+    "Gruntfile.js",
+    ".travis.yml",
+    ".editorconfig",
+    ".bowerrc",
+    "CONTRIBUTING.md"
+  ],
+  "devDependencies": {
+    "qunit": "~1.12.0",
+    "jquery": "~2.x",
+    "jquery-mockajax": "~1.5.3"
+  }
+}

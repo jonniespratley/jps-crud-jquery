@@ -50,13 +50,6 @@ exports.cms = (function() {
     if (data != null ? data._id : void 0) {
       url += '/' + (data != null ? data._id : void 0);
     }
-    console.log({
-      url: url,
-      type: type,
-      params: params,
-      dataType: "json",
-      data: data
-    });
     if (data) {
       return data;
     } else {

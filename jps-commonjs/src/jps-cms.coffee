@@ -29,13 +29,7 @@ class exports.cms
 	_send :(type = 'GET', model, data = null, params = null) ->
 		url = @options.endpoint + "/" + model
 		url += '/' + data?._id if data?._id
-		console.log(
-			url: url
-			type: type
-			params: params
-			dataType: "json"
-			data: data
-		)
+
 		if data
 			return data
 		else
